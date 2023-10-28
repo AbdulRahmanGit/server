@@ -1,4 +1,3 @@
-const PORT = 8000
 import express from 'express'
 import cors from 'cors'
 import env from 'dotenv'
@@ -30,4 +29,4 @@ app.post('/completions', async (req,res) =>{
         console.error(error)
     }
 })
-app.listen(PORT, () => console.log('Your server is running on PORT ' + PORT))
+app.listen("8000", () => console.log('Your server is running on PORT 8000'))
