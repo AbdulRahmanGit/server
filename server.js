@@ -6,9 +6,9 @@ app.use(express.json())
 app.use(cors())
 
 const API_KEY = process.env.API_KEY
-app.use(cors({ // Replace with your front-end domain
-  methods: 'GET,POST', // Add the HTTP methods you're using
-}));
+app.get("/completions", (req, res) => {
+    res.send("Hello World!1")
+})
 
 app.post('/completions', async (req,res) =>{
     const options = {
