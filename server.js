@@ -1,7 +1,7 @@
 const PORT = 8000
-const express = require('express')
-const cors = require('cors')
-require('dotenv').config()
+import express from 'express'
+import cors from 'cors'
+import env from 'dotenv'
 const app = express()
 app.use(express.json())
 app.use(cors())
