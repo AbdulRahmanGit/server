@@ -7,10 +7,8 @@ app.use(cors())
 
 const API_KEY = process.env.API_KEY
 
-app.get("/", (req, res) => {
-    res.send("Hello World!")
-})
-app.post('/completions', async (req,res) =>{
+
+app.post('/', async (req,res) =>{
     const options = {
         method: "POST",
         headers:{
