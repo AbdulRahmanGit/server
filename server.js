@@ -3,7 +3,20 @@ import cors from 'cors'
 import env from 'dotenv'
 const app = express()
 app.use(express.json())
-app.use(cors())
+const allowedOrigins = ['https://client-chatgpt-ten.vercel.app'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions))
+
 
 const API_KEY = process.env.API_KEY
 app.get("/", (req, res) => {
