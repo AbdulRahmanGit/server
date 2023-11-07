@@ -1,21 +1,9 @@
-import express from 'express'
-import cors from 'cors'
-import env from 'dotenv'
+const express = require('express')
+const cors = require('cors')
+require('dotenv').config()
 const app = express()
 app.use(express.json())
-const allowedOrigins = ['https://client-chatgpt-ten.vercel.app'];
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-};
-
-app.use(cors(corsOptions))
+app.use(cors())
 
 
 const API_KEY = process.env.API_KEY
@@ -34,7 +22,7 @@ app.post('/', async (req,res) =>{
         body: JSON.stringify({
             model:"gpt-3.5-turbo",
             messages:[{role:"user", content: req.body.message}],
-            max_tokens:100,
+            max_tokens:1000,
         })
     }
     try{
