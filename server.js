@@ -1,10 +1,12 @@
-const express = require('express')
-const cors = require('cors')
-require('dotenv').config()
+import express from 'express'
+import cors from 'cors'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 const app = express()
 app.use(express.json())
 app.use(cors())
-
 
 const API_KEY = process.env.API_KEY
 app.get("/", (req, res) => {
