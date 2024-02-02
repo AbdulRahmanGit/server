@@ -1,9 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import env from 'dotenv'
-
-require(dotenv).config()
-
 const app = express()
 app.use(express.json())
 app.use(cors())
@@ -24,7 +21,7 @@ app.post('/', async (req,res) =>{
         body: JSON.stringify({
             model:"gpt-3.5-turbo",
             messages:[{role:"user", content: req.body.message}],
-            max_tokens:1000,
+            max_tokens:100,
         })
     }
     try{
