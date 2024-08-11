@@ -20,12 +20,13 @@ app.post('/', async (req, res) => {
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        // Correct the request structure as per the API's requirement
         const result = await model.generateContent({
-            prompt: req.body.message, // Adjusted the field to match API expectations
+            prompt: {
+                text: req.body.message
+            }
         });
-        console.log(result)
-        res.send(result.response.text());
+
+        res.send(result.output.text); 
     } catch (error) {
         console.error(error);
         res.status(500).send('Error processing request');
