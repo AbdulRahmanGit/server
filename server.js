@@ -1,8 +1,7 @@
-import cors from 'cors';
-import dotenv from 'dotenv';
-import express from 'express';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import fs from 'fs';
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 dotenv.config();
 
@@ -20,16 +19,19 @@ app.post('/', async (req, res) => {
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        // Adjust this part depending on the content you are sending to the API
+        console.log('Request body:', req.body);
+
         const result = await model.generateContent([
             { role: "user", content: req.body.message }
         ]);
 
-        res.send(result.response.text());
+        console.log('API result:', result);
+
+        res.send(await result.response.text());  // Ensure you await the text() method
     } catch (error) {
-        console.error(error);
+        console.error('Error:', error.message);
         res.status(500).send('Error processing request');
     }
 });
 
-app.listen("8000", () => console.log('Your server is running on PORT 8000'));
+app.listen(8000, () => console.log('Your server is running on PORT 8000'));
