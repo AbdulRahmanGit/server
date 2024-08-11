@@ -27,6 +27,7 @@ app.post('/', async (req, res) => {
         });
         const response = await result.response;
         const text = response.text();
+        console.log(text);
        res.send(await response.text());
     } catch (error) {
         console.error(error);
