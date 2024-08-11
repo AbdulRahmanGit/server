@@ -26,7 +26,7 @@ app.post('/', async (req, res) => {
             }
         });
 
-       const data = result.json()
+       const data = await result.json()
         res.send(data)
     } catch (error) {
         console.error(error);
