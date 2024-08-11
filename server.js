@@ -25,8 +25,9 @@ app.post('/', async (req, res) => {
                 text: req.body.message
             }
         });
-
-       res.send(await result.response.text());
+        const response = await result.response;
+        const text = response.text();
+       res.send(await response.text());
     } catch (error) {
         console.error(error);
         res.status(500).send('Error processing request');
