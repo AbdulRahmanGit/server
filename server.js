@@ -24,7 +24,7 @@ app.post('/', async (req, res) => {
         const result = await model.generateContent({
             prompt: req.body.message, // Adjusted the field to match API expectations
         });
-
+        console.log(result)
         res.send(result.response.text());
     } catch (error) {
         console.error(error);
